@@ -15,7 +15,7 @@ export const login = async (input: LoginLinkedLn) => {
     await write(usernameInput, input.username)
     await write(passwordInput, input.password)
     await signInButton.click()
-    await page.sleep(10000)
+    await page.sleep(60000)
   } catch (error) {
     errorLog('Login fail', error)
   } finally {
