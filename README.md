@@ -14,7 +14,7 @@ yarn install | npm i
 
 
 ## Usage
-Run via comman
+Run via command
 ```
 yarn start | npm run start
 ```
