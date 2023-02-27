@@ -18,9 +18,9 @@ export const login = async (input: LoginLinkedLn) => {
     const usernameInput = await findElementById(page, 'session_key')
     const passwordInput = await findElementById(page, 'session_password')
     const signInButton = await findElementByClassName(page, 'sign-in-form__submit-button')
-    await writeWithDelay(page, usernameInput, input.username, 500)
-    await writeWithDelay(page, passwordInput, input.password, 500)
-    await page.sleep(1000)
+    await writeWithDelay(page, usernameInput, input.username, 100)
+    await writeWithDelay(page, passwordInput, input.password, 100)
+    await page.sleep(500)
     await signInButton.click()
     await page.sleep(10000)
   } catch (error) {
