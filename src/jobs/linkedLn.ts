@@ -1,6 +1,12 @@
 import type { LoginLinkedLn } from '../types'
 import { driver } from '../config'
-import { findElementByClassName, findElementById, quit, visitUrl, write } from '../helpers'
+import {
+  findElementByClassName,
+  findElementById,
+  quit,
+  visitUrl,
+  writeWithDelay,
+} from '../helpers'
 import { LINKEDLN_URL } from '../constant'
 import { infoLog, errorLog } from '../config/logger'
 
@@ -12,10 +18,11 @@ export const login = async (input: LoginLinkedLn) => {
     const usernameInput = await findElementById(page, 'session_key')
     const passwordInput = await findElementById(page, 'session_password')
     const signInButton = await findElementByClassName(page, 'sign-in-form__submit-button')
-    await write(usernameInput, input.username)
-    await write(passwordInput, input.password)
+    await writeWithDelay(page, usernameInput, input.username, 500)
+    await writeWithDelay(page, passwordInput, input.password, 500)
+    await page.sleep(1000)
     await signInButton.click()
-    await page.sleep(60000)
+    await page.sleep(10000)
   } catch (error) {
     errorLog('Login fail', error)
   } finally {

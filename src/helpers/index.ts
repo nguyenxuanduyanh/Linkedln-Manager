@@ -24,6 +24,18 @@ export const write = async (el: WebElement, text: string) => {
   return await el.sendKeys(text)
 }
 
+export const writeWithDelay = async (
+  driver: WebDriver,
+  element: WebElement,
+  text: string,
+  delay: number,
+) => {
+  for (const i of text) {
+    await write(element, i)
+    await driver.sleep(delay)
+  }
+}
+
 export const quit = async (driver: WebDriver) => {
   return await driver.quit()
 }
