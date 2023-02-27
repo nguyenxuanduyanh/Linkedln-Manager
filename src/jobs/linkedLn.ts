@@ -1,3 +1,4 @@
+import { Key } from 'selenium-webdriver'
 import type { LoginLinkedLn } from '../types'
 import { driver } from '../config'
 import {
@@ -22,7 +23,11 @@ export const login = async (input: LoginLinkedLn) => {
     await writeWithDelay(page, passwordInput, input.password, 100)
     await page.sleep(500)
     await signInButton.click()
-    await page.sleep(10000)
+    const searchInput = await findElementByClassName(page, 'search-global-typeahead__input')
+    await writeWithDelay(page, searchInput, 'Developer', 100)
+    await page.sleep(500)
+    await searchInput.sendKeys(Key.ENTER)
+    await page.sleep(20000)
   } catch (error) {
     errorLog('Login fail', error)
   } finally {
